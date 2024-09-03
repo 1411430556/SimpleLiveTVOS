@@ -153,7 +153,8 @@ class LiveViewModel {
 
             let storage: Storage<String, [LiveMainListModel]> = try Storage<String, [LiveMainListModel]>(
               diskConfig: diskConfig,
-              memoryConfig: memoryConfig,
+              memoryConfig: memoryConfig, 
+              fileManager: FileManager.default,
               transformer: TransformerFactory.forCodable(ofType: [LiveMainListModel].self) // Storage<String, User>
             )
             var categories: [LiveMainListModel] = []
