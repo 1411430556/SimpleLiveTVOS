@@ -16,53 +16,52 @@ struct AngelLiveTabView: View {
     @State private var selectedTab: Tabs = .favorite
     
     var body: some View {
-        VStack {
-            TabView {
-                Tab("收藏", systemImage: "play") {
-                    FavoriteView()
+        TabView {
+            Tab("收藏", systemImage: "play") {
+                FavoriteView()
+            }
+            .customizationID(Tabs.favorite.customizationID)
+            if UIDevice.current.userInterfaceIdiom == .phone {
+                Tab("平台", systemImage: "play") {
+                    PlatformView()
                 }
-                .customizationID(Tabs.favorite.customizationID)
-                if UIDevice.current.userInterfaceIdiom == .phone {
+                .customizationID(Tabs.platform.customizationID)
+            }else {
+                TabSection(content: {
                     Tab("平台", systemImage: "play") {
                         PlatformView()
                     }
                     .customizationID(Tabs.platform.customizationID)
-                }else {
-                    TabSection(content: {
-                        Tab("平台", systemImage: "play") {
-                            PlatformView()
+                    ForEach(allPlatformList.indices, id: \.self) { index in
+                        Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
+                            LiveListView(searchType: allPlatformList[index].liveType)
                         }
-                        .customizationID(Tabs.platform.customizationID)
-                        .customizationBehavior(.reorderable, for: .tabBar)
-                        ForEach(allPlatformList.indices, id: \.self) { index in
-                            Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
-                                LiveListView(searchType: allPlatformList[index].liveType)
-                            }
-                            .customizationBehavior(.reorderable, for: .sidebar)
-                        }
-                    }, header: {
-                        Label("平台", image: "list.bullet.rectangle")
-                    })
-                }
+//                        .customizationID(Tabs.platformSection.customizationID)
+                    }
+                }, header: {
+                    Label("平台", image: "list.bullet.rectangle")
+                })
                 
-                Tab("设置", systemImage: "books.vertical") {
-                    SettingView()
-                }
-                .customizationID(Tabs.setting.customizationID)
-                Tab(role: .search) {
-                    SearchView()
-                }
-                .customizationID(Tabs.search.customizationID)
+                .defaultVisibility(.hidden, for: .tabBar)
+//                .defaultVisibility(.visible, for: .sidebar)
             }
-            .tabViewCustomization($tabViewCustomization)
-            .tabViewStyle(.sidebarAdaptable)
-            .navigationTitle("Angel Live")
-            .toolbar {
-                Button {
-                    
-                } label: {
-                    Text("Add")
-                }
+            
+            Tab("设置", systemImage: "books.vertical") {
+                SettingView()
+            }
+            .customizationID(Tabs.setting.customizationID)
+            Tab(role: .search) {
+                SearchView()
+            }
+            .customizationID(Tabs.search.customizationID)
+        }
+        .tabViewCustomization($tabViewCustomization)
+        .tabViewStyle(.sidebarAdaptable)
+        .toolbar {
+            Button {
+                
+            } label: {
+                Text("Add")
             }
         }
     }

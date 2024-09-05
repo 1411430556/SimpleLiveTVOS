@@ -10,6 +10,7 @@ import SwiftUI
 enum Tabs: Equatable, Hashable, Identifiable {
     case favorite
     case platform
+    case platformSection
     case setting
     case search
     
@@ -24,6 +25,8 @@ enum Tabs: Equatable, Hashable, Identifiable {
                 7002
             case .search:
                 7003
+            case .platformSection:
+                7004
         }
     }
     
@@ -37,6 +40,8 @@ enum Tabs: Equatable, Hashable, Identifiable {
                 "设置"
             case .search:
                 "搜索"
+            case .platformSection:
+                "平台列表"
         }
     }
     
@@ -54,14 +59,16 @@ enum Tabs: Equatable, Hashable, Identifiable {
                 "gear"
             case .search:
                 "magnifyingglass"
+            case .platformSection:
+                "list.bullet"
         }
     }
     
     var isSecondary: Bool {
         switch self {
-            case .favorite, .setting, .search:
+            case .favorite, .setting, .search, .platform:
                 false
-            case .platform:
+            case .platformSection:
                 true
         }
     }
