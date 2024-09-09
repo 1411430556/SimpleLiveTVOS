@@ -10,16 +10,18 @@ import LiveParse
 
 struct LiveListView: View {
     
+    @Environment(LiveListViewModel.self) var liveListViewModel
     @State private var navigationPath = [NavigationNode]()
     @State var searchType: LiveType
-    @State private var searchText = ""
     @State private var showModal = false
     
     var body: some View {
-//        Text("LiveListView:\(searchType)")
+
         NavigationStack(path: $navigationPath) {
             VStack {
-                
+                ForEach(liveListViewModel.categories, id: \.id) { item in
+                    Text(item.title)
+                }
             }
             .navigationTitle(searchType.rawValue)
             .navigationBarTitleDisplayMode(.automatic)
@@ -29,11 +31,10 @@ struct LiveListView: View {
                         showModal.toggle()
                     }) {
                         Text("分类")
-//                            .font(.title)
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    SearchBar(text: $searchText)
+                    
                 }
             }
             .sheet(isPresented: $showModal) {
@@ -70,11 +71,13 @@ struct SearchBar: View {
 struct ModalView: View {
     
     @Binding var showModel: Bool
+    @State private var searchText = ""
     
     var body: some View {
         VStack {
             Text("This is a modal view")
                 .font(.title)
+            SearchBar(text: $searchText)
             Spacer()
             Button(action: {
                 showModel.toggle()

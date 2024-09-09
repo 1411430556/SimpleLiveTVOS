@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,8 @@
 		4F16B43F2C781B6C00AA7A7E /* PlayerControlCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F16B43E2C781B6C00AA7A7E /* PlayerControlCardView.swift */; };
 		4F16B4412C78228B00AA7A7E /* PlayerControlCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F16B4402C78228B00AA7A7E /* PlayerControlCardViewModel.swift */; };
 		4F22D67C2BF1AB9400497F3A /* LiveParse in Frameworks */ = {isa = PBXBuildFile; productRef = 4F22D67B2BF1AB9400497F3A /* LiveParse */; };
+		4F3D13032C8EA8B10020DF93 /* AngelLiveTools in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3D13022C8EA8B10020DF93 /* AngelLiveTools */; };
+		4F3D13092C8EA9E00020DF93 /* AngelLiveTools in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3D13082C8EA9E00020DF93 /* AngelLiveTools */; };
 		4F5AD4442C252896005A2E5B /* HistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5AD4432C252896005A2E5B /* HistoryModel.swift */; };
 		4F61662E2C786A79008FED0D /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = 4F61662D2C786A79008FED0D /* Pow */; };
 		4F6166312C7C8E84008FED0D /* LiveParse in Frameworks */ = {isa = PBXBuildFile; productRef = 4F6166302C7C8E84008FED0D /* LiveParse */; };
@@ -73,14 +75,7 @@
 		4FCDB8562BBF155700EB33DA /* LiveParse in Frameworks */ = {isa = PBXBuildFile; productRef = 4FCDB8552BBF155700EB33DA /* LiveParse */; };
 		4FE0E4282BBD5D720053D69F /* FullScreenLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FE0E4272BBD5D720053D69F /* FullScreenLoadingView.swift */; };
 		4FF2D3722BBC0369002822DD /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D3692BBC0369002822DD /* LoadingView.swift */; };
-		4FF2D3732BBC0369002822DD /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D36C2BBC0369002822DD /* UIColor+Extension.swift */; };
-		4FF2D3742BBC0369002822DD /* CloudSQLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D36D2BBC0369002822DD /* CloudSQLManager.swift */; };
-		4FF2D3752BBC0369002822DD /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D36E2BBC0369002822DD /* ApiManager.swift */; };
-		4FF2D3762BBC0369002822DD /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D36F2BBC0369002822DD /* Common.swift */; };
-		4FF2D3772BBC0369002822DD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D3702BBC0369002822DD /* String+Extension.swift */; };
-		4FF2D3782BBC0369002822DD /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D3712BBC0369002822DD /* Data+Extension.swift */; };
 		4FF2D37A2BBC0399002822DD /* DanmuSettingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D3792BBC0399002822DD /* DanmuSettingStore.swift */; };
-		4FF2D37C2BBC0597002822DD /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D37B2BBC0597002822DD /* SwipeView.swift */; };
 		4FF2D37E2BBC06C2002822DD /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D37D2BBC06C2002822DD /* QRCodeView.swift */; };
 		4FF2D3802BBC06EE002822DD /* QRCodeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D37F2BBC06EE002822DD /* QRCodeStore.swift */; };
 		4FF2D3822BBC0C18002822DD /* SettingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D3812BBC0C18002822DD /* SettingStore.swift */; };
@@ -176,14 +171,7 @@
 		4FCA39192BBA4F8E00506675 /* SyncSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncSocketManager.swift; sourceTree = "<group>"; };
 		4FE0E4272BBD5D720053D69F /* FullScreenLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenLoadingView.swift; sourceTree = "<group>"; };
 		4FF2D3692BBC0369002822DD /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		4FF2D36C2BBC0369002822DD /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		4FF2D36D2BBC0369002822DD /* CloudSQLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudSQLManager.swift; sourceTree = "<group>"; };
-		4FF2D36E2BBC0369002822DD /* ApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
-		4FF2D36F2BBC0369002822DD /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		4FF2D3702BBC0369002822DD /* String+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		4FF2D3712BBC0369002822DD /* Data+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		4FF2D3792BBC0399002822DD /* DanmuSettingStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DanmuSettingStore.swift; sourceTree = "<group>"; };
-		4FF2D37B2BBC0597002822DD /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
 		4FF2D37D2BBC06C2002822DD /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		4FF2D37F2BBC06EE002822DD /* QRCodeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeStore.swift; sourceTree = "<group>"; };
 		4FF2D3812BBC0C18002822DD /* SettingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingStore.swift; sourceTree = "<group>"; };
@@ -202,6 +190,7 @@
 				4F61662E2C786A79008FED0D /* Pow in Frameworks */,
 				FB15C6332C1B353900D93C64 /* LiveParse in Frameworks */,
 				4FCDB8562BBF155700EB33DA /* LiveParse in Frameworks */,
+				4F3D13092C8EA9E00020DF93 /* AngelLiveTools in Frameworks */,
 				FB525FDB2BB9D51900BFA18C /* UDPBroadcast in Frameworks */,
 				4FB7323F2B98884400F02249 /* AcknowList in Frameworks */,
 				FB5101982B0ED76A00A1AE0D /* SWCompression in Frameworks */,
@@ -230,6 +219,7 @@
 				4F22D67C2BF1AB9400497F3A /* LiveParse in Frameworks */,
 				4F9F9C282C1BDEE100B863A9 /* LiveParse in Frameworks */,
 				4FC9B38E2A52E39400C0D3C8 /* Alamofire in Frameworks */,
+				4F3D13032C8EA8B10020DF93 /* AngelLiveTools in Frameworks */,
 				FB1D86B92C7EC13F00A679F3 /* LiveParse in Frameworks */,
 				FB5101902B0E35A900A1AE0D /* Starscream in Frameworks */,
 				4F6166312C7C8E84008FED0D /* LiveParse in Frameworks */,
@@ -481,7 +471,6 @@
 			isa = PBXGroup;
 			children = (
 				4FF2D3672BBC0369002822DD /* SharedComponents */,
-				4FF2D36B2BBC0369002822DD /* Utils */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -511,20 +500,6 @@
 				4FF2D37F2BBC06EE002822DD /* QRCodeStore.swift */,
 			);
 			path = QRCode;
-			sourceTree = "<group>";
-		};
-		4FF2D36B2BBC0369002822DD /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				4FF2D37B2BBC0597002822DD /* SwipeView.swift */,
-				4FF2D36C2BBC0369002822DD /* UIColor+Extension.swift */,
-				4FF2D36D2BBC0369002822DD /* CloudSQLManager.swift */,
-				4FF2D36E2BBC0369002822DD /* ApiManager.swift */,
-				4FF2D36F2BBC0369002822DD /* Common.swift */,
-				4FF2D3702BBC0369002822DD /* String+Extension.swift */,
-				4FF2D3712BBC0369002822DD /* Data+Extension.swift */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 		FBDEF8382BB9CBCB002EE8FF /* Frameworks */ = {
@@ -587,6 +562,8 @@
 				4F6166302C7C8E84008FED0D /* LiveParse */,
 				FB1D86B82C7EC13F00A679F3 /* LiveParse */,
 				FB76CA582C7EFF2000F95FA2 /* LiveParse */,
+				4F3D13022C8EA8B10020DF93 /* AngelLiveTools */,
+				4F3D13082C8EA9E00020DF93 /* AngelLiveTools */,
 			);
 			productName = SimpleLiveTVOS;
 			productReference = 4FC3DCDA2A49382F00CA36B9 /* SimpleLiveTVOS.app */;
@@ -679,6 +656,7 @@
 				4F64860A2C783FFA00716373 /* XCRemoteSwiftPackageReference "ColorfulX" */,
 				4F61662C2C786A79008FED0D /* XCRemoteSwiftPackageReference "Pow" */,
 				FB76CA572C7EFF2000F95FA2 /* XCRemoteSwiftPackageReference "LiveParse" */,
+				4F3D13072C8EA9E00020DF93 /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */,
 			);
 			productRefGroup = 4FC3DCDB2A49382F00CA36B9 /* Products */;
 			projectDirPath = "";
@@ -727,11 +705,9 @@
 				4FC3DCE02A49382F00CA36B9 /* ContentView.swift in Sources */,
 				4F05A6B62B50CAD90033214E /* PlayerControlView.swift in Sources */,
 				4FBAB9122B47A42200A77A5C /* DanmakuAsyncLayer.swift in Sources */,
-				4FF2D3732BBC0369002822DD /* UIColor+Extension.swift in Sources */,
 				4F05A6B72B50CAD90033214E /* RoomInfoViewModel.swift in Sources */,
 				4FBAB9132B47A42200A77A5C /* DanmakuQueuePool.swift in Sources */,
 				4FC3DCDE2A49382F00CA36B9 /* SimpleLiveTVOSApp.swift in Sources */,
-				4FF2D3772BBC0369002822DD /* String+Extension.swift in Sources */,
 				4FE0E4282BBD5D720053D69F /* FullScreenLoadingView.swift in Sources */,
 				4F05A6BD2B50CAD90033214E /* LeftMenu.swift in Sources */,
 				FB5C3FD92C79C86A00865D6E /* DanmuSettingMainView.swift in Sources */,
@@ -740,9 +716,7 @@
 				4F05A6C12B50CAD90033214E /* BilibiliLoginView.swift in Sources */,
 				4F05A6BE2B50CAD90033214E /* LiveCardView.swift in Sources */,
 				4F05A6BC2B50CAD90033214E /* ListMainView.swift in Sources */,
-				4FF2D3752BBC0369002822DD /* ApiManager.swift in Sources */,
 				4FBAB9192B47A42200A77A5C /* GifAnimator.swift in Sources */,
-				4FF2D37C2BBC0597002822DD /* SwipeView.swift in Sources */,
 				4F05A6BB2B50CAD90033214E /* LiveViewModel.swift in Sources */,
 				4F73DB632C1BF6D2001C38C9 /* SimpleLiveViewModel.swift in Sources */,
 				4F16B4412C78228B00AA7A7E /* PlayerControlCardViewModel.swift in Sources */,
@@ -751,7 +725,6 @@
 				4FBAB9112B47A42200A77A5C /* DanmakuView.swift in Sources */,
 				4F9A9B772C19B01200F8BB44 /* IndicatorMenuView.swift in Sources */,
 				4FBAB9102B47A42200A77A5C /* DanmakuCell.swift in Sources */,
-				4FF2D3742BBC0369002822DD /* CloudSQLManager.swift in Sources */,
 				4FBAB9182B47A42200A77A5C /* DanmakuGifCell.swift in Sources */,
 				4FB732372B9882C100F02249 /* OpenSourceListView.swift in Sources */,
 				4FBAB9202B47A8A200A77A5C /* DanmakuTextCellModel.swift in Sources */,
@@ -760,10 +733,8 @@
 				4F5AD4442C252896005A2E5B /* HistoryModel.swift in Sources */,
 				4FF2D3802BBC06EE002822DD /* QRCodeStore.swift in Sources */,
 				4FF2D3822BBC0C18002822DD /* SettingStore.swift in Sources */,
-				4FF2D3782BBC0369002822DD /* Data+Extension.swift in Sources */,
 				4F05A6B82B50CAD90033214E /* DetailPlayerView.swift in Sources */,
 				4F9F9C2A2C1BDEFC00B863A9 /* PlatformViewModel.swift in Sources */,
-				4FF2D3762BBC0369002822DD /* Common.swift in Sources */,
 				4F05A6BF2B50CAD90033214E /* DanmuSettingView.swift in Sources */,
 				4F05A6BA2B50CAD90033214E /* SearchRoomView.swift in Sources */,
 				4F05A6C22B50CAD90033214E /* SettingView.swift in Sources */,
@@ -1118,6 +1089,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		4F3D13072C8EA9E00020DF93 /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/AngelLiveTools;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		4F61662C2C786A79008FED0D /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -1273,6 +1251,14 @@
 		4F22D67B2BF1AB9400497F3A /* LiveParse */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LiveParse;
+		};
+		4F3D13022C8EA8B10020DF93 /* AngelLiveTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AngelLiveTools;
+		};
+		4F3D13082C8EA9E00020DF93 /* AngelLiveTools */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AngelLiveTools;
 		};
 		4F61662D2C786A79008FED0D /* Pow */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -24,6 +24,7 @@ class PlatformViewModel {
 
 
 struct Platformdescription {
+    let id = UUID()
     let title: String
     let bigPic: String
     let smallPic: String

@@ -35,6 +35,7 @@ struct AngelLiveTabView: View {
                     ForEach(allPlatformList.indices, id: \.self) { index in
                         Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
                             LiveListView(searchType: allPlatformList[index].liveType)
+                                .environment(LiveListViewModel(liveType: allPlatformList[index].liveType))
                         }
 //                        .customizationID(Tabs.platformSection.customizationID)
                     }

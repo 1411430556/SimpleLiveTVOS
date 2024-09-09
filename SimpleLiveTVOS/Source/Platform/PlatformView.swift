@@ -75,7 +75,6 @@ struct PlatformView: View {
                                     .opacity(focusIndex == index ? 1 : 0)
                                     .animation(.easeInOut(duration: 0.25), value: focusIndex == index)
                                 }
-                                
                             }
                         }
                         .buttonStyle(.card)
