@@ -24,11 +24,11 @@
 		4F6449AE2C86A29200E5E14D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F6449AD2C86A29200E5E14D /* Item.swift */; };
 		4F6449B02C86A29400E5E14D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6449AF2C86A29400E5E14D /* Assets.xcassets */; };
 		4F6449B32C86A29400E5E14D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6449B22C86A29400E5E14D /* Preview Assets.xcassets */; };
-		4F6449BB2C86A2B200E5E14D /* LiveParse in Frameworks */ = {isa = PBXBuildFile; productRef = 4F6449BA2C86A2B200E5E14D /* LiveParse */; };
 		4F982E042C904CFA00CEE47F /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E002C904CFA00CEE47F /* CustomTabBarView.swift */; };
 		4F982E052C904CFA00CEE47F /* RectKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E022C904CFA00CEE47F /* RectKey.swift */; };
 		4F982E062C904CFA00CEE47F /* TabBarScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E032C904CFA00CEE47F /* TabBarScrollView.swift */; };
-		4F982E072C904CFA00CEE47F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E012C904CFA00CEE47F /* HomeView.swift */; };
+		4F982E092C91915700CEE47F /* ListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E082C91915700CEE47F /* ListCardView.swift */; };
+		4FFCF5012C9199D70089FDBA /* AngelLiveTools in Frameworks */ = {isa = PBXBuildFile; productRef = 4FFCF5002C9199D70089FDBA /* AngelLiveTools */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,9 +50,9 @@
 		4F6449B22C86A29400E5E14D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		4F6449BC2C86A33300E5E14D /* AngelLiveMobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AngelLiveMobile.entitlements; sourceTree = "<group>"; };
 		4F982E002C904CFA00CEE47F /* CustomTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
-		4F982E012C904CFA00CEE47F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		4F982E022C904CFA00CEE47F /* RectKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectKey.swift; sourceTree = "<group>"; };
 		4F982E032C904CFA00CEE47F /* TabBarScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScrollView.swift; sourceTree = "<group>"; };
+		4F982E082C91915700CEE47F /* ListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCardView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3D130E2C8EADEA0020DF93 /* Cache in Frameworks */,
+				4FFCF5012C9199D70089FDBA /* AngelLiveTools in Frameworks */,
 				4F3D13062C8EA9C80020DF93 /* AngelLiveTools in Frameworks */,
-				4F6449BB2C86A2B200E5E14D /* LiveParse in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +106,7 @@
 			children = (
 				4F5FC4EE2C87F708001B3626 /* PlatformView.swift */,
 				4F5FC4F42C87F7C1001B3626 /* LiveListView.swift */,
+				4F982E082C91915700CEE47F /* ListCardView.swift */,
 				4F44C1EF2C89433E007ED891 /* PlatformViewModel.swift */,
 				4F3D130A2C8EAAEF0020DF93 /* LiveListViewModel.swift */,
 			);
@@ -177,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				4F982E002C904CFA00CEE47F /* CustomTabBarView.swift */,
-				4F982E012C904CFA00CEE47F /* HomeView.swift */,
 				4F982E022C904CFA00CEE47F /* RectKey.swift */,
 				4F982E032C904CFA00CEE47F /* TabBarScrollView.swift */,
 			);
@@ -201,9 +201,9 @@
 			);
 			name = AngelLiveMobile;
 			packageProductDependencies = (
-				4F6449BA2C86A2B200E5E14D /* LiveParse */,
 				4F3D13052C8EA9C80020DF93 /* AngelLiveTools */,
 				4F3D130D2C8EADEA0020DF93 /* Cache */,
+				4FFCF5002C9199D70089FDBA /* AngelLiveTools */,
 			);
 			productName = AngelLiveMobile;
 			productReference = 4F6449A62C86A29200E5E14D /* AngelLiveMobile.app */;
@@ -234,9 +234,8 @@
 			);
 			mainGroup = 4F64499D2C86A29200E5E14D;
 			packageReferences = (
-				4F6449B92C86A2B200E5E14D /* XCRemoteSwiftPackageReference "LiveParse" */,
-				4F3D13042C8EA9C80020DF93 /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */,
 				4F3D130C2C8EADEA0020DF93 /* XCRemoteSwiftPackageReference "Cache" */,
+				4FFCF4FF2C9199D70089FDBA /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */,
 			);
 			productRefGroup = 4F6449A72C86A29200E5E14D /* Products */;
 			projectDirPath = "";
@@ -273,10 +272,10 @@
 				4F982E042C904CFA00CEE47F /* CustomTabBarView.swift in Sources */,
 				4F982E052C904CFA00CEE47F /* RectKey.swift in Sources */,
 				4F982E062C904CFA00CEE47F /* TabBarScrollView.swift in Sources */,
-				4F982E072C904CFA00CEE47F /* HomeView.swift in Sources */,
 				4F5FC4F32C87F72C001B3626 /* SettingView.swift in Sources */,
 				4F5FC4F52C87F7C1001B3626 /* LiveListView.swift in Sources */,
 				4F5FC4EF2C87F708001B3626 /* PlatformView.swift in Sources */,
+				4F982E092C91915700CEE47F /* ListCardView.swift in Sources */,
 				4F5FC5712C87FFF9001B3626 /* AngelLiveTabView.swift in Sources */,
 				4F5FC4F12C87F71E001B3626 /* SearchView.swift in Sources */,
 				4F3D130B2C8EAAEF0020DF93 /* LiveListViewModel.swift in Sources */,
@@ -492,7 +491,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		4F3D13042C8EA9C80020DF93 /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */ = {
+		4FFCF4FF2C9199D70089FDBA /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/AngelLiveTools;
 		};
@@ -507,14 +506,6 @@
 				minimumVersion = 7.4.0;
 			};
 		};
-		4F6449B92C86A2B200E5E14D /* XCRemoteSwiftPackageReference "LiveParse" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pcccccc/LiveParse";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -527,10 +518,9 @@
 			package = 4F3D130C2C8EADEA0020DF93 /* XCRemoteSwiftPackageReference "Cache" */;
 			productName = Cache;
 		};
-		4F6449BA2C86A2B200E5E14D /* LiveParse */ = {
+		4FFCF5002C9199D70089FDBA /* AngelLiveTools */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4F6449B92C86A2B200E5E14D /* XCRemoteSwiftPackageReference "LiveParse" */;
-			productName = LiveParse;
+			productName = AngelLiveTools;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

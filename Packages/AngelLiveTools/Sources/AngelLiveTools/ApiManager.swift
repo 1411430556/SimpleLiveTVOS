@@ -104,7 +104,7 @@ public class ApiManager {
      
      - Returns: 是否
     */
-    class func checkInternetConnection() async -> Bool {
+    public class func checkInternetConnection() async -> Bool {
         let url = URL(string: "https://www.google.com")!
         var request = URLRequest(url: url)
         request.timeoutInterval = 5

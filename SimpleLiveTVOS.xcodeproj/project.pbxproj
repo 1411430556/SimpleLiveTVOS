@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -89,7 +89,6 @@
 		FB525FDB2BB9D51900BFA18C /* UDPBroadcast in Frameworks */ = {isa = PBXBuildFile; productRef = FB525FDA2BB9D51900BFA18C /* UDPBroadcast */; };
 		FB5C3FD92C79C86A00865D6E /* DanmuSettingMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5C3FD82C79C86A00865D6E /* DanmuSettingMainView.swift */; };
 		FB5C3FDC2C7B5F5000865D6E /* LiveParse in Frameworks */ = {isa = PBXBuildFile; productRef = FB5C3FDB2C7B5F5000865D6E /* LiveParse */; };
-		FB76CA592C7EFF2000F95FA2 /* LiveParse in Frameworks */ = {isa = PBXBuildFile; productRef = FB76CA582C7EFF2000F95FA2 /* LiveParse */; };
 		FB89E1612B1340870083116D /* KSPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = FB89E1602B1340870083116D /* KSPlayer */; };
 		FB89E1642B1340DA0083116D /* KSPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = FB89E1632B1340DA0083116D /* KSPlayer */; };
 		FB99EA462B1346A400C0C5DA /* KSPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = FB99EA452B1346A400C0C5DA /* KSPlayer */; };
@@ -186,7 +185,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB76CA592C7EFF2000F95FA2 /* LiveParse in Frameworks */,
 				4F61662E2C786A79008FED0D /* Pow in Frameworks */,
 				FB15C6332C1B353900D93C64 /* LiveParse in Frameworks */,
 				4FCDB8562BBF155700EB33DA /* LiveParse in Frameworks */,
@@ -561,7 +559,6 @@
 				FB5C3FDB2C7B5F5000865D6E /* LiveParse */,
 				4F6166302C7C8E84008FED0D /* LiveParse */,
 				FB1D86B82C7EC13F00A679F3 /* LiveParse */,
-				FB76CA582C7EFF2000F95FA2 /* LiveParse */,
 				4F3D13022C8EA8B10020DF93 /* AngelLiveTools */,
 				4F3D13082C8EA9E00020DF93 /* AngelLiveTools */,
 			);
@@ -655,8 +652,7 @@
 				4F73DB642C1C1ABB001C38C9 /* XCRemoteSwiftPackageReference "Cache" */,
 				4F64860A2C783FFA00716373 /* XCRemoteSwiftPackageReference "ColorfulX" */,
 				4F61662C2C786A79008FED0D /* XCRemoteSwiftPackageReference "Pow" */,
-				FB76CA572C7EFF2000F95FA2 /* XCRemoteSwiftPackageReference "LiveParse" */,
-				4F3D13072C8EA9E00020DF93 /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */,
+				4F16E0102C91A070004FB0DA /* XCRemoteSwiftPackageReference "LiveParse" */,
 			);
 			productRefGroup = 4FC3DCDB2A49382F00CA36B9 /* Products */;
 			projectDirPath = "";
@@ -1089,14 +1085,15 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		4F3D13072C8EA9E00020DF93 /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = Packages/AngelLiveTools;
-		};
-/* End XCLocalSwiftPackageReference section */
-
 /* Begin XCRemoteSwiftPackageReference section */
+		4F16E0102C91A070004FB0DA /* XCRemoteSwiftPackageReference "LiveParse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pcccccc/LiveParse";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.2;
+			};
+		};
 		4F61662C2C786A79008FED0D /* XCRemoteSwiftPackageReference "Pow" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/EmergeTools/Pow";
@@ -1207,14 +1204,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.2;
-			};
-		};
-		FB76CA572C7EFF2000F95FA2 /* XCRemoteSwiftPackageReference "LiveParse" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/pcccccc/LiveParse";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.4.1;
 			};
 		};
 		FBDEE4772AD5874900F996BA /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
@@ -1368,11 +1357,6 @@
 		};
 		FB5C3FDB2C7B5F5000865D6E /* LiveParse */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = LiveParse;
-		};
-		FB76CA582C7EFF2000F95FA2 /* LiveParse */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = FB76CA572C7EFF2000F95FA2 /* XCRemoteSwiftPackageReference "LiveParse" */;
 			productName = LiveParse;
 		};
 		FB89E1602B1340870083116D /* KSPlayer */ = {

@@ -10,7 +10,7 @@ import SwiftUI
 struct MyView: Identifiable {
     var id = UUID()
     var title: String
-    var theView: AnyView
+    var theView: ListCardView
     var size: CGSize = .zero
     var minX: CGFloat = .zero
 }

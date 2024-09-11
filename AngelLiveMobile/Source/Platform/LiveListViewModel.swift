@@ -34,12 +34,18 @@ class LiveListViewModel {
     var selectedSubListIndex: Int = -1
     var selectedRoomListIndex: Int = -1
     
+    var tabs: [MyView] = []
+    
     init(liveType: LiveType) {
         self.liveType = liveType
         Task {
             await getCategoryList()
         }
     }
+    
+    //房间信息
+    var roomPage = 1
+    var roomList: [LiveModel] = []
     
     /**
      获取平台直播分类。
@@ -97,11 +103,17 @@ class LiveListViewModel {
             }
 
             self.categories = categories
-//            self.getRoomList(index: self.selectedSubListIndex)
+            self.getRoomList(index: self.selectedSubListIndex)
             self.isLoading = false
             self.lodingTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { _ in
                 self.endFirstLoading = true
             })
+            
+            guard let firstCategoryList = categories.first else { return }
+            for item in firstCategoryList.subList {
+                
+                tabs.append(MyView(title: item.title, theView: ListCardView()))
+            }
             
         }catch {
             self.isLoading = false
@@ -118,5 +130,49 @@ class LiveListViewModel {
         self.selectedSubCategory = subList
     }
     
+    /**
+     获取平台房间列表。
+     
+     - Returns: 房间列表。
+    */
+    func getRoomList(index: Int) {
+        isLoading = true
+        if index == -1 {
+            if let subListCategory = self.categories.first?.subList.first {
+                Task {
+                    var finalSubListCategory = subListCategory
+                    if liveType == .yy {
+                        finalSubListCategory.id = self.categories.first!.biz ?? ""
+                        finalSubListCategory.parentId = subListCategory.biz ?? ""
+                    }
+                    let roomList  = try await ApiManager.fetchRoomList(liveCategory: finalSubListCategory, page: roomPage, liveType: liveType)
+                    DispatchQueue.main.async {
+                        if self.roomPage == 1 {
+                            self.roomList.removeAll()
+                        }
+                        self.roomList += roomList
+                        self.isLoading = false
+                    }
+                }
+            }
+        }else {
+            let subListCategory = self.selectedMainListCategory?.subList[index]
+            Task {
+                var finalSubListCategory = subListCategory
+                if liveType == .yy {
+                    finalSubListCategory?.id = self.selectedMainListCategory?.biz ?? ""
+                    finalSubListCategory?.parentId = subListCategory?.biz ?? ""
+                }
+                let roomList  = try await ApiManager.fetchRoomList(liveCategory: finalSubListCategory!, page: self.roomPage, liveType: liveType)
+                DispatchQueue.main.async {
+                    if self.roomPage == 1 {
+                        self.roomList.removeAll()
+                    }
+                    self.roomList += roomList
+                    self.isLoading = false
+                }
+            }
+        }
+    }
 }
 
