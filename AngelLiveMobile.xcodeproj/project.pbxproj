@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0CFA462C9294FD00C0AD6E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4F0CFA452C9294FD00C0AD6E /* Kingfisher */; };
 		4F17D1B12C88092600AF912E /* Tabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F17D1B02C88092600AF912E /* Tabs.swift */; };
 		4F3D13062C8EA9C80020DF93 /* AngelLiveTools in Frameworks */ = {isa = PBXBuildFile; productRef = 4F3D13052C8EA9C80020DF93 /* AngelLiveTools */; };
 		4F3D130B2C8EAAEF0020DF93 /* LiveListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F3D130A2C8EAAEF0020DF93 /* LiveListViewModel.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0CFA472C92962300C0AD6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4F17D1B02C88092600AF912E /* Tabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tabs.swift; sourceTree = "<group>"; };
 		4F3D130A2C8EAAEF0020DF93 /* LiveListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveListViewModel.swift; sourceTree = "<group>"; };
 		4F44C1EF2C89433E007ED891 /* PlatformViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformViewModel.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F0CFA462C9294FD00C0AD6E /* Kingfisher in Frameworks */,
 				4F3D130E2C8EADEA0020DF93 /* Cache in Frameworks */,
 				4FFCF5012C9199D70089FDBA /* AngelLiveTools in Frameworks */,
 				4F3D13062C8EA9C80020DF93 /* AngelLiveTools in Frameworks */,
@@ -158,6 +161,7 @@
 		4F6449A82C86A29200E5E14D /* AngelLiveMobile */ = {
 			isa = PBXGroup;
 			children = (
+				4F0CFA472C92962300C0AD6E /* Info.plist */,
 				4F6449BC2C86A33300E5E14D /* AngelLiveMobile.entitlements */,
 				4F5FC4E72C87F64C001B3626 /* Source */,
 				4F5FC4E62C87F64C001B3626 /* Other */,
@@ -204,6 +208,7 @@
 				4F3D13052C8EA9C80020DF93 /* AngelLiveTools */,
 				4F3D130D2C8EADEA0020DF93 /* Cache */,
 				4FFCF5002C9199D70089FDBA /* AngelLiveTools */,
+				4F0CFA452C9294FD00C0AD6E /* Kingfisher */,
 			);
 			productName = AngelLiveMobile;
 			productReference = 4F6449A62C86A29200E5E14D /* AngelLiveMobile.app */;
@@ -236,6 +241,7 @@
 			packageReferences = (
 				4F3D130C2C8EADEA0020DF93 /* XCRemoteSwiftPackageReference "Cache" */,
 				4FFCF4FF2C9199D70089FDBA /* XCLocalSwiftPackageReference "Packages/AngelLiveTools" */,
+				4F0CFA442C9294FD00C0AD6E /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4F6449A72C86A29200E5E14D /* Products */;
 			projectDirPath = "";
@@ -417,11 +423,12 @@
 				DEVELOPMENT_TEAM = HZG263D38Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AngelLiveMobile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -448,11 +455,12 @@
 				DEVELOPMENT_TEAM = HZG263D38Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AngelLiveMobile/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -498,6 +506,14 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4F0CFA442C9294FD00C0AD6E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 		4F3D130C2C8EADEA0020DF93 /* XCRemoteSwiftPackageReference "Cache" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hyperoslo/Cache";
@@ -509,6 +525,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4F0CFA452C9294FD00C0AD6E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4F0CFA442C9294FD00C0AD6E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		4F3D13052C8EA9C80020DF93 /* AngelLiveTools */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = AngelLiveTools;

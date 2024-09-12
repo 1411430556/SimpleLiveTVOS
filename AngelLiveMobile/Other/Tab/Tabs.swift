@@ -10,7 +10,7 @@ import SwiftUI
 enum Tabs: Equatable, Hashable, Identifiable {
     case favorite
     case platform
-    case platformSection
+    case platformSection(String)
     case setting
     case search
     
@@ -40,13 +40,18 @@ enum Tabs: Equatable, Hashable, Identifiable {
                 "设置"
             case .search:
                 "搜索"
-            case .platformSection:
-                "平台列表"
+            case .platformSection(let string):
+                string
         }
     }
     
     var customizationID: String {
-        return "AngelLive.Tab." + self.name
+        switch self {
+            case .favorite, .platform, .setting, .search:
+                "AngelLive.Tab." + self.name
+            case .platformSection(let string):
+                "AngelLive.Tab.Platform.Section." + string
+        }
     }
     
     var symbol: String {
@@ -59,7 +64,7 @@ enum Tabs: Equatable, Hashable, Identifiable {
                 "gear"
             case .search:
                 "magnifyingglass"
-            case .platformSection:
+            case .platformSection(_):
                 "list.bullet"
         }
     }
@@ -68,7 +73,7 @@ enum Tabs: Equatable, Hashable, Identifiable {
         switch self {
             case .favorite, .setting, .search, .platform:
                 false
-            case .platformSection:
+            case .platformSection(_):
                 true
         }
     }

@@ -31,11 +31,9 @@ struct LiveListView: View {
                     ScrollView(.horizontal) {
                         LazyHStack(spacing: 0) {
                             ForEach(liveListViewModel.tabs, id: \.id) { tab in
-//                                tab.theView
                                 ListCardView()
                                     .id(tab.title)
                                     .containerRelativeFrame(.horizontal)
-                                    .background(Color.red)
                                     .environment(liveListViewModel)
                             }
                         }
@@ -43,7 +41,6 @@ struct LiveListView: View {
                         .rect { rect in
                             progress = -rect.minX / proxy.size.width
                         }
-    //                    .safeAreaPadding(.top, 120)
                     }
                     .scrollPosition(id: $mainViewScrollableState)
                     .scrollIndicators(.hidden)
@@ -57,7 +54,7 @@ struct LiveListView: View {
                         }
                     }
                 }
-                .ignoresSafeArea()
+//                .ignoresSafeArea() //忽略安全区会使sidebar即使在显示时，view会藏在Sidebar底部
             }
             .navigationTitle(searchType.rawValue)
             .navigationBarTitleDisplayMode(.automatic)

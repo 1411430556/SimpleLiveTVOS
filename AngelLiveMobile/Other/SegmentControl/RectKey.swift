@@ -31,7 +31,7 @@ extension View {
 
 extension CGFloat {
     func interpolate(inputRange: [CGFloat], outputRange: [CGFloat]) -> CGFloat {
-        guard inputRange.count != 0 || outputRange.count != 0 else { return 0.0 }
+        guard inputRange.count > 1 || outputRange.count > 1 else { return 0.0 }
         let x = self
         let length = inputRange.count - 1
         if x <= inputRange[0] {

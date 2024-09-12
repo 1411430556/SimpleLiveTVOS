@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ListCardView: View {
     
@@ -14,7 +15,26 @@ struct ListCardView: View {
     var body: some View {
         VStack {
             ForEach(liveListViewModel.roomList, id: \.id) { item in
-                Text(item.roomTitle)
+                NavigationLink {
+                    
+                } label: {
+                    VStack {
+                        KFImage(.init(string: item.roomCover))
+                            .placeholder {
+                                Image("placeholder")
+                                    .resizable()
+                                    .cornerRadius(5)
+                            }
+                            .resizable()
+                            .cornerRadius(5)
+                            .frame(width: 180, height: 180 * 0.6)
+                        Text(item.roomTitle)
+                            .fontWeight(.bold)
+                        Text(item.userName)
+                            .fontWeight(.medium)
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
             }
         }
         .onAppear {

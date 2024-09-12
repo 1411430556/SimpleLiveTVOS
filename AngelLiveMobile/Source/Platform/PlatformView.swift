@@ -88,7 +88,11 @@ struct PlatformView: View {
                     columnCount = 3
                 }
             }else if horizontalSizeClass == .compact {
-                columnCount = 1
+                if width > UIScreen.main.bounds.width * 0.6 {
+                    columnCount = 2
+                }else {
+                    columnCount = 1
+                }
             }else {
                 columnCount = 5
             }

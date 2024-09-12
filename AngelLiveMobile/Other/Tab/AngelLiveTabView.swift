@@ -21,32 +21,23 @@ struct AngelLiveTabView: View {
                 FavoriteView()
             }
             .customizationID(Tabs.favorite.customizationID)
-            if UIDevice.current.userInterfaceIdiom == .phone {
-                Tab("平台", systemImage: "play") {
-                    PlatformView()
+            TabSection {
+                ForEach(allPlatformList.indices, id: \.self) { index in
+                    Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
+                        LiveListView(searchType: allPlatformList[index].liveType)
+                            .environment(LiveListViewModel(liveType: allPlatformList[index].liveType))
+                    }
+                    .customizationID(Tabs.platformSection(allPlatformList[index].liveType.rawValue).customizationID)
                 }
-                .customizationID(Tabs.platform.customizationID)
-            }else {
-                TabSection(content: {
-                    Tab("平台", systemImage: "play") {
-                        PlatformView()
-                    }
-                    .customizationID(Tabs.platform.customizationID)
-                    ForEach(allPlatformList.indices, id: \.self) { index in
-                        Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
-                            LiveListView(searchType: allPlatformList[index].liveType)
-                                .environment(LiveListViewModel(liveType: allPlatformList[index].liveType))
-                        }
-//                        .customizationID(Tabs.platformSection.customizationID)
-                    }
-                }, header: {
-                    Label("平台", image: "list.bullet.rectangle")
-                })
-                
-                .defaultVisibility(.hidden, for: .tabBar)
-//                .defaultVisibility(.visible, for: .sidebar)
+            } header: {
+                Label("平台", image: "list.bullet.rectangle")
             }
-            
+//                Tab("平台", systemImage: "play") {
+//                    PlatformView()
+//                }
+//                .customizationID(Tabs.platform.customizationID)
+
+
             Tab("设置", systemImage: "books.vertical") {
                 SettingView()
             }
