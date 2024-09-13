@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LiveParse
+import AngelLiveTools
 
 struct PlatformView: View {
     
@@ -22,7 +23,7 @@ struct PlatformView: View {
         NavigationStack(path: $navigationPath) {
             GeometryReader { geometry in
                 
-                let itemWidth = getCounts(width: geometry.size.width)
+                let itemWidth = Common.calcPadItemCounts(width: geometry.size.width, horizontalSizeClass: horizontalSizeClass)
                 
                 VStack {
                     ScrollView {
@@ -54,49 +55,6 @@ struct PlatformView: View {
                 }
             }
             .navigationTitle("平台")
-        }
-    }
-    
-    func getCounts(width: CGFloat) -> (CGFloat, Int) {
-        var columnCount = 0
-        if UIDevice.current.orientation.isLandscape {
-            if horizontalSizeClass == .regular {
-                if UIDevice.current.orientation.isLandscape {
-                    if width > UIScreen.main.bounds.width * 0.75 {
-                        columnCount = 4
-                    }else {
-                        columnCount = 3
-                    }
-                }else {
-                    columnCount = 3
-                }
-            }else if horizontalSizeClass == .compact {
-                columnCount = 2
-            }else {
-                columnCount = 5
-            }
-            return ((width - 40 - CGFloat(columnCount) * 15) / CGFloat(columnCount), columnCount)
-        }else {
-            if horizontalSizeClass == .regular {
-                if UIDevice.current.orientation.isLandscape {
-                    if width > UIScreen.main.bounds.width * 0.75 {
-                        columnCount = 4
-                    }else {
-                        columnCount = 3
-                    }
-                }else {
-                    columnCount = 3
-                }
-            }else if horizontalSizeClass == .compact {
-                if width > UIScreen.main.bounds.width * 0.6 {
-                    columnCount = 2
-                }else {
-                    columnCount = 1
-                }
-            }else {
-                columnCount = 5
-            }
-            return ((width - 40 - CGFloat(columnCount) * 15) / CGFloat(columnCount), columnCount)
         }
     }
 }

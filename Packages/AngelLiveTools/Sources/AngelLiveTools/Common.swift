@@ -9,6 +9,7 @@ import Foundation
 import CoreImage.CIFilterBuiltins
 import UIKit
 import LiveParse
+import SwiftUI
 
 struct SimpleLiveNotificationNames {
     static let playerEndPlay = Notification.Name("SimpleLive.Player.End.Play")
@@ -123,6 +124,49 @@ public class Common {
                 return "live_card_ks"
             case .youtube:
                 return "live_card_youtube"
+        }
+    }
+    
+    @MainActor public class func calcPadItemCounts(width: CGFloat, horizontalSizeClass: UserInterfaceSizeClass?) -> (CGFloat, Int) {
+        var columnCount = 0
+        if UIDevice.current.orientation.isLandscape {
+            if horizontalSizeClass == .regular {
+                if UIDevice.current.orientation.isLandscape {
+                    if width > UIScreen.main.bounds.width * 0.75 {
+                        columnCount = 4
+                    }else {
+                        columnCount = 3
+                    }
+                }else {
+                    columnCount = 3
+                }
+            }else if horizontalSizeClass == .compact {
+                columnCount = 2
+            }else {
+                columnCount = 5
+            }
+            return ((width - 40 - CGFloat(columnCount) * 15) / CGFloat(columnCount), columnCount)
+        }else {
+            if horizontalSizeClass == .regular {
+                if UIDevice.current.orientation.isLandscape {
+                    if width > UIScreen.main.bounds.width * 0.75 {
+                        columnCount = 4
+                    }else {
+                        columnCount = 3
+                    }
+                }else {
+                    columnCount = 3
+                }
+            }else if horizontalSizeClass == .compact {
+                if width > UIScreen.main.bounds.width * 0.6 {
+                    columnCount = 2
+                }else {
+                    columnCount = 1
+                }
+            }else {
+                columnCount = 5
+            }
+            return ((width - 40 - CGFloat(columnCount) * 15) / CGFloat(columnCount), columnCount)
         }
     }
 }
