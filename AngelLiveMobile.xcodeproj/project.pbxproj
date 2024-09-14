@@ -29,6 +29,7 @@
 		4F982E052C904CFA00CEE47F /* RectKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E022C904CFA00CEE47F /* RectKey.swift */; };
 		4F982E062C904CFA00CEE47F /* TabBarScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E032C904CFA00CEE47F /* TabBarScrollView.swift */; };
 		4F982E092C91915700CEE47F /* ListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E082C91915700CEE47F /* ListCardView.swift */; };
+		4FD1844B2C95784E000DAB29 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1844A2C95784E000DAB29 /* RefreshableScrollView.swift */; };
 		4FFCF5012C9199D70089FDBA /* AngelLiveTools in Frameworks */ = {isa = PBXBuildFile; productRef = 4FFCF5002C9199D70089FDBA /* AngelLiveTools */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		4F982E022C904CFA00CEE47F /* RectKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectKey.swift; sourceTree = "<group>"; };
 		4F982E032C904CFA00CEE47F /* TabBarScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScrollView.swift; sourceTree = "<group>"; };
 		4F982E082C91915700CEE47F /* ListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCardView.swift; sourceTree = "<group>"; };
+		4FD1844A2C95784E000DAB29 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		4F5FC4E62C87F64C001B3626 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				4FD184492C957826000DAB29 /* RefreshableScrollView */,
 				4F982DFF2C904CD500CEE47F /* SegmentControl */,
 				4F5FC56F2C87FE78001B3626 /* Tab */,
 				4F6449A92C86A29200E5E14D /* AngelLiveMobileApp.swift */,
@@ -188,6 +191,14 @@
 			path = SegmentControl;
 			sourceTree = "<group>";
 		};
+		4FD184492C957826000DAB29 /* RefreshableScrollView */ = {
+			isa = PBXGroup;
+			children = (
+				4FD1844A2C95784E000DAB29 /* RefreshableScrollView.swift */,
+			);
+			path = RefreshableScrollView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -286,6 +297,7 @@
 				4F5FC4F12C87F71E001B3626 /* SearchView.swift in Sources */,
 				4F3D130B2C8EAAEF0020DF93 /* LiveListViewModel.swift in Sources */,
 				4F6449AA2C86A29200E5E14D /* AngelLiveMobileApp.swift in Sources */,
+				4FD1844B2C95784E000DAB29 /* RefreshableScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

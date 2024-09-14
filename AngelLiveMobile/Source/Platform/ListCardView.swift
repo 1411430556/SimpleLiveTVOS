@@ -18,8 +18,7 @@ struct ListCardView: View {
         GeometryReader { geometry in
             
             let itemWidth = Common.calcPadItemCounts(width: geometry.size.width, horizontalSizeClass: horizontalSizeClass)
-            
-            ScrollView(.vertical) {
+            RefreshableScrollView(content: {
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemWidth.0), spacing: 15), count: itemWidth.1), alignment: .leading, spacing: 15) {
                     ForEach(liveListViewModel.roomList, id: \.id) { item in
                         NavigationLink {
@@ -68,11 +67,18 @@ struct ListCardView: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                 }
-            }
+                .padding(.leading, 30)
+                .padding(.top, 30)
+            
+            }, onRefresh: {
+                liveListViewModel.getRoomList(index: liveListViewModel.selectedSubListIndex)
+            }, onLoadMore: {
+                
+            })
         }
 
         .onAppear {
-            liveListViewModel.getRoomList(index: liveListViewModel.selectedSubListIndex)
+            
         }
     }
 }
