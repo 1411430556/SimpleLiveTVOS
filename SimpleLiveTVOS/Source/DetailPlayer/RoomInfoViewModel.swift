@@ -11,6 +11,7 @@ import LiveParse
 import SimpleToast
 import Observation
 import CoreMedia
+import AngelLiveTools
 
 public class PlayerOptions: KSOptions {
   public var syncSystemRate: Bool = false

@@ -95,7 +95,7 @@ public class CloudSQLManager: NSObject {
         }
     }
     
-    class func formatErrorCode(error: Error) -> String {
+    public class func formatErrorCode(error: Error) -> String {
         let theError = error as! CKError
         switch theError.code {
         case .internalError:

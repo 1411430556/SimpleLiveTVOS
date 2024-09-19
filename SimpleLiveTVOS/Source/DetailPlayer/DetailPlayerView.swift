@@ -8,6 +8,7 @@
 import SwiftUI
 import KSPlayer
 import AVKit
+import AngelLiveTools
 
 
 struct DetailPlayerView: View {

@@ -25,7 +25,6 @@ struct ListCardView: View {
                             
                         } label: {
                             VStack {
-
                                 KFImage(.init(string: item.roomCover))
                                     .placeholder {
                                         Image("placeholder")

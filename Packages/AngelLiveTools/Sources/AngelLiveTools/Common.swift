@@ -11,9 +11,9 @@ import UIKit
 import LiveParse
 import SwiftUI
 
-struct SimpleLiveNotificationNames {
-    static let playerEndPlay = Notification.Name("SimpleLive.Player.End.Play")
-    static let favoriteRefresh = Notification.Name("SimpleLive.Favorite.Refresh")
+public struct SimpleLiveNotificationNames {
+    public static let playerEndPlay = Notification.Name("SimpleLive.Player.End.Play")
+    public static let favoriteRefresh = Notification.Name("SimpleLive.Favorite.Refresh")
 }
 
 public class Common {
@@ -128,6 +128,7 @@ public class Common {
     }
     
     @MainActor public class func calcPadItemCounts(width: CGFloat, horizontalSizeClass: UserInterfaceSizeClass?) -> (CGFloat, Int) {
+        #if !os(tvOS)
         var columnCount = 0
         if UIDevice.current.orientation.isLandscape {
             if horizontalSizeClass == .regular {
@@ -168,5 +169,9 @@ public class Common {
             }
             return ((width - 40 - CGFloat(columnCount) * 15) / CGFloat(columnCount), columnCount)
         }
+        #else
+        return (0.0, 0)
+        #endif
     }
+    
 }

@@ -46,7 +46,7 @@ extension String {
         }
     }
     
-    func formatWatchedCount() -> String {
+    public func formatWatchedCount() -> String {
         let isNumeric = self.allSatisfy { $0.isNumber }
         if isNumeric {
             let count = Double(self) ?? 0.0

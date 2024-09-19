@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SimpleToast
+import AngelLiveTools
 
 struct QRCodeView: View {
     
