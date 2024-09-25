@@ -103,7 +103,9 @@ class LiveListViewModel {
             }
 
             self.categories = categories
-            self.getRoomList(index: self.selectedSubListIndex)
+            Task {
+                try await self.getRoomList(index: self.selectedSubListIndex)
+            }
             self.isLoading = false
             self.lodingTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: false, block: { _ in
                 self.endFirstLoading = true
@@ -111,9 +113,10 @@ class LiveListViewModel {
             
             guard let firstCategoryList = categories.first else { return }
             for item in firstCategoryList.subList {
-                
                 tabs.append(MyView(title: item.title, theView: ListCardView()))
             }
+            selectedMainListCategory = firstCategoryList
+            selectedSubListIndex = 0
             
         }catch {
             self.isLoading = false
@@ -135,43 +138,35 @@ class LiveListViewModel {
      
      - Returns: 房间列表。
     */
-    func getRoomList(index: Int) {
+    func getRoomList(index: Int) async throws {
         isLoading = true
         if index == -1 {
             if let subListCategory = self.categories.first?.subList.first {
-                Task {
-                    var finalSubListCategory = subListCategory
-                    if liveType == .yy {
-                        finalSubListCategory.id = self.categories.first!.biz ?? ""
-                        finalSubListCategory.parentId = subListCategory.biz ?? ""
-                    }
-                    let roomList  = try await ApiManager.fetchRoomList(liveCategory: finalSubListCategory, page: roomPage, liveType: liveType)
-                    DispatchQueue.main.async {
-                        if self.roomPage == 1 {
-                            self.roomList.removeAll()
-                        }
-                        self.roomList += roomList
-                        self.isLoading = false
-                    }
+                var finalSubListCategory = subListCategory
+                if liveType == .yy {
+                    finalSubListCategory.id = self.categories.first!.biz ?? ""
+                    finalSubListCategory.parentId = subListCategory.biz ?? ""
                 }
+                let roomList  = try await ApiManager.fetchRoomList(liveCategory: finalSubListCategory, page: roomPage, liveType: liveType)
+                if self.roomPage == 1 {
+                    self.roomList.removeAll()
+                }
+                self.roomList += roomList
+                self.isLoading = false
             }
         }else {
             let subListCategory = self.selectedMainListCategory?.subList[index]
-            Task {
-                var finalSubListCategory = subListCategory
-                if liveType == .yy {
-                    finalSubListCategory?.id = self.selectedMainListCategory?.biz ?? ""
-                    finalSubListCategory?.parentId = subListCategory?.biz ?? ""
-                }
-                let roomList  = try await ApiManager.fetchRoomList(liveCategory: finalSubListCategory!, page: self.roomPage, liveType: liveType)
-                DispatchQueue.main.async {
-                    if self.roomPage == 1 {
-                        self.roomList.removeAll()
-                    }
-                    self.roomList += roomList
-                    self.isLoading = false
-                }
+            var finalSubListCategory = subListCategory
+            if liveType == .yy {
+                finalSubListCategory?.id = self.selectedMainListCategory?.biz ?? ""
+                finalSubListCategory?.parentId = subListCategory?.biz ?? ""
             }
+            let roomList  = try await ApiManager.fetchRoomList(liveCategory: finalSubListCategory!, page: self.roomPage, liveType: liveType)
+            if self.roomPage == 1 {
+                self.roomList.removeAll()
+            }
+            self.roomList += roomList
+            self.isLoading = false
         }
     }
 }

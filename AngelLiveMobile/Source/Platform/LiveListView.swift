@@ -15,18 +15,19 @@ struct LiveListView: View {
     @State var searchType: LiveType
     @State private var showModal = false
     
-    @State var activeIndex = 0
     @State var tabBarScrollableState: String?
     @State var mainViewScrollableState: String?
     @State var progress: CGFloat = .zero
+    var appViewModel = AngelLiveViewModel()
     
     var body: some View {
         
         @Bindable var liveListViewModel = self.liveListViewModel
+        @Bindable var bindAppViewModel = appViewModel
 
         NavigationStack(path: $navigationPath) {
             VStack(spacing: 0) {
-                CustomTabBarView(tabs: $liveListViewModel.tabs, activeIndex: $activeIndex, tabbarScrollableState: $tabBarScrollableState, mainViewScrollableState: $mainViewScrollableState, progress: $progress)
+                CustomTabBarView(tabs: $liveListViewModel.tabs, activeIndex: $bindAppViewModel.activeIndex, tabbarScrollableState: $tabBarScrollableState, mainViewScrollableState: $mainViewScrollableState, progress: $progress)
                 GeometryReader { proxy in
                     ScrollView(.horizontal) {
                         LazyHStack(spacing: 0) {
@@ -35,6 +36,7 @@ struct LiveListView: View {
                                     .id(tab.title)
                                     .containerRelativeFrame(.horizontal)
                                     .environment(liveListViewModel)
+                                    .environment(bindAppViewModel)
                             }
                         }
                         .scrollTargetLayout()
@@ -49,7 +51,11 @@ struct LiveListView: View {
                         if let newValue, let newIndex = liveListViewModel.tabs.firstIndex(where: { $0.title == newValue }) {
                             withAnimation(.snappy) {
                                 tabBarScrollableState = newValue
-                                activeIndex = newIndex
+                                bindAppViewModel.activeIndex = newIndex
+                                liveListViewModel.selectedSubListIndex = newIndex
+                                Task {
+                                    try await liveListViewModel.getRoomList(index: newIndex)
+                                }
                             }
                         }
                     }

@@ -16,6 +16,13 @@ public struct SimpleLiveNotificationNames {
     public static let favoriteRefresh = Notification.Name("SimpleLive.Favorite.Refresh")
 }
 
+public enum DeviceType: String, Codable {
+    case iPhone = "iPhone",
+         iPad = "iPad",
+         mac = "Mac",
+         unknow = "unknow"
+}
+
 public class Common {
     
     /**
@@ -174,4 +181,24 @@ public class Common {
         #endif
     }
     
+    @MainActor public class func deviceType() -> DeviceType {
+        if UIDevice.current.model.contains("iPhone") {
+            return .iPhone
+        }
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return .iPad
+        }
+        
+        if #available(iOS 18.0, *) {
+            if ProcessInfo.processInfo.isiOSAppOnMac || ProcessInfo.processInfo.isMacCatalystApp {
+                return .mac
+            }
+        }else {
+            if ProcessInfo.processInfo.isMacCatalystApp {
+                return .mac
+            }
+        }
+        return .unknow
+    }
 }
