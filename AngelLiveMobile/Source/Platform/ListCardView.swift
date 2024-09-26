@@ -60,9 +60,11 @@ struct ListCardView: View {
                     }
                 }
                 .padding(.leading, 30)
-                .padding(.top, 30)
-            }, showsIndicator: false) {
-                try await Task.sleep(nanoseconds: 3_000_000_000)
+                .padding(.top, 15)
+            }, showsIndicator: false, dynamicTopOffset: 0) {
+                try await liveListViewModel.getRoomList(index: liveListViewModel.selectedSubListIndex)
+            } onLoadMore: {
+                liveListViewModel.roomPage += 1
                 try await liveListViewModel.getRoomList(index: liveListViewModel.selectedSubListIndex)
             }
             .environment(appViewModel)

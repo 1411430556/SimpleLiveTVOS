@@ -14,14 +14,18 @@ struct DynamicRefreshView<Content: View>: View {
 
     var content: Content
     var showsIndicator: Bool
+    var dynamicTopOffset: CGFloat
     var onRefresh: () async throws -> Void
+    var onLoadMore: () async throws -> Void
     
     @Environment(AngelLiveViewModel.self) var appViewModel
     
-    init(content: @escaping () -> Content, showsIndicator: Bool, onRefresh: @escaping () async throws -> Void) {
+    init(content: @escaping () -> Content, showsIndicator: Bool, dynamicTopOffset: CGFloat, onRefresh: @escaping () async throws -> Void, onLoadMore: @escaping () async throws -> Void) {
         self.content = content()
         self.showsIndicator = showsIndicator
+        self.dynamicTopOffset = dynamicTopOffset
         self.onRefresh = onRefresh
+        self.onLoadMore = onLoadMore
     }
     
     var body: some View {
@@ -29,30 +33,30 @@ struct DynamicRefreshView<Content: View>: View {
         @Bindable var bindScrollDelegate = appViewModel.scrollDelegate
         
         ScrollView(.vertical, showsIndicators: showsIndicator) {
-            VStack {
+            VStack(spacing: 0) {
                 Rectangle()
                     .fill(.clear)
-                    .frame(height: 70 * appViewModel.scrollDelegate.progress)
-                Text("\(appViewModel.activeIndex) \(appViewModel.scrollDelegate.gestureID)")
+                    .frame(height: 50 * appViewModel.scrollDelegate.progress)
                 content
+                Rectangle()
+                .fill(.black)
+                .frame(height: 50)
+                .opacity(appViewModel.scrollDelegate.loadMore ? 1 : 0)
             }
             .offset(coordinateSpace: "SCROLL") { offset in
-                print(appViewModel.scrollDelegate.gestureID)
-                if let grs = appViewModel.scrollDelegate.rootViewController().view.gestureRecognizers {
-                    for gr in grs {
-                        print(gr.name)
-                    }
-//                    if grs.contains(where: { $0.name == scrollDelegate.gestureID}) == false {
-//                        scrollDelegate.addGesture()
-//                    }
-                }
+                print(offset)
+                print(appViewModel.scrollDelegate.contentHeight)
                 appViewModel.scrollDelegate.contentOffset = offset
                 if !appViewModel.scrollDelegate.isEligible {
-                    var progress = offset / 70
+                    var progress = offset / 50
                     progress = (progress < 0 ? 0 : progress)
                     progress = (progress > 1 ? 1 : progress)
                     appViewModel.scrollDelegate.scrollOffset = offset
                     appViewModel.scrollDelegate.progress = progress
+                }
+                
+                if appViewModel.scrollDelegate.contentHeight < abs(offset) + CGFloat(100) && appViewModel.scrollDelegate.contentHeight > 0 {
+                    appViewModel.scrollDelegate.loadMore = true
                 }
                 
                 if appViewModel.scrollDelegate.isEligible && appViewModel.scrollDelegate.isRefreshing == false {
@@ -60,38 +64,45 @@ struct DynamicRefreshView<Content: View>: View {
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                 }
             }
+            .contentHeight(coordinateSpace: "SCROLL") { height in
+                appViewModel.scrollDelegate.contentHeight = height
+            }
+            
         }
+       
         .overlay(alignment: .top) {
             ZStack {
                 Capsule()
-                    .fill(.red)
+                    .fill(.clear)
             }
             .frame(width: 126, height: 37)
-            .offset(y: Common.deviceType() == .iPad ? -38 : 11)
+            .offset(y: dynamicTopOffset)
             .frame(maxHeight: .infinity, alignment: .top)
-            .overlay(alignment: .top) {
-                Canvas { context, size in
-                    context.addFilter(.alphaThreshold(min: 0.5, color: .black))
-                    context.addFilter(.blur(radius: 10))
-                    
-                    context.drawLayer { ctx in
-                        for index in [1, 2] {
-                            if let reslovedView = context.resolveSymbol(id: index) {
-                                ctx.draw(reslovedView, at: CGPoint(x: size.width / 2, y: Common.deviceType() == .iPad ? -20 : 30))
-                            }
-                        }
-                    }
-                } symbols: {
-                    CanvasSymbol()
-                        .tag(1)
-                    CanvasSymbol(isCircle: true)
-                        .tag(2)
-                }
-                .allowsHitTesting(false)
-            }
+//            .overlay(alignment: .top) {
+////                Canvas { context, size in
+////                    context.addFilter(.alphaThreshold(min: 0.5, color: .black))
+////                    context.addFilter(.blur(radius: 10))
+////
+////                    context.drawLayer { ctx in
+////                        for index in [1, 2] {
+////                            if let reslovedView = context.resolveSymbol(id: index) {
+////                                ctx.draw(reslovedView, at: CGPoint(x: size.width / 2, y: -19))
+////                            }
+////                        }
+////                    }
+////                } symbols: {
+////                    CanvasSymbol()
+////                        .tag(1)
+////                    CanvasSymbol(isCircle: true)
+////                        .tag(2)
+////                }
+////                .allowsHitTesting(false)
+//                Color.black
+//            }
             .overlay(alignment: .top) {
                 refreshView()
-                    .offset(y: Common.deviceType() == .iPad ? -38 : 11)
+                    .offset(y: dynamicTopOffset)
+                    
             }
             .ignoresSafeArea()
         }
@@ -117,12 +128,22 @@ struct DynamicRefreshView<Content: View>: View {
                 }
             }
         }
+        .onChange(of: appViewModel.scrollDelegate.loadMore) { oldValue, newValue in
+            if newValue {
+                Task {
+                    try await onLoadMore()
+                    withAnimation(.easeOut(duration: 0.25)) {
+                        appViewModel.scrollDelegate.loadMore = false
+                    }
+                }
+            }
+        }
     }
     
     @ViewBuilder
     func CanvasSymbol(isCircle: Bool = false) -> some View {
         if isCircle {
-            let centerOffset = appViewModel.scrollDelegate.isEligible ? (appViewModel.scrollDelegate.contentOffset > 95 ? appViewModel.scrollDelegate.contentOffset : 95) : appViewModel.scrollDelegate.scrollOffset
+            let centerOffset = appViewModel.scrollDelegate.isEligible ? (appViewModel.scrollDelegate.contentOffset > 19 ? appViewModel.scrollDelegate.contentOffset : 19) : appViewModel.scrollDelegate.scrollOffset
             let offset = appViewModel.scrollDelegate.scrollOffset > 0 ? centerOffset : 0
             Circle()
                 .fill(.black)
@@ -133,25 +154,26 @@ struct DynamicRefreshView<Content: View>: View {
                 .fill(.black)
                 .frame(width: 126, height: 37)
         }
+        
     }
     
     @ViewBuilder
     func refreshView() -> some View {
-        let centerOffset = appViewModel.scrollDelegate.isEligible ? (appViewModel.scrollDelegate.contentOffset > 95 ? appViewModel.scrollDelegate.contentOffset : 95) : appViewModel.scrollDelegate.scrollOffset
+        let centerOffset = appViewModel.scrollDelegate.isEligible ? (appViewModel.scrollDelegate.contentOffset > 19 ? appViewModel.scrollDelegate.contentOffset : 19) : appViewModel.scrollDelegate.scrollOffset
         let offset = appViewModel.scrollDelegate.scrollOffset > 0 ? centerOffset : 0
         ZStack {
             Image(systemName: "arrow.down")
                 .font(.caption.bold())
-                .foregroundColor(.white)
                 .frame(width: 37, height: 37)
                 .rotationEffect(.init(degrees: appViewModel.scrollDelegate.progress * 180))
                 .opacity(appViewModel.scrollDelegate.isEligible ? 0 : 1)
-            
+                .background(.separator)
+                .cornerRadius(37 / 2)
             ProgressView()
-                .tint(.white)
                 .frame(width: 37, height: 37)
                 .opacity(appViewModel.scrollDelegate.isEligible ? 1 : 0)
         }
+        .foregroundStyle(.ultraThinMaterial)
         .animation(.easeInOut(duration: 0.25), value: appViewModel.scrollDelegate.isEligible)
         .opacity(appViewModel.scrollDelegate.progress)
         .offset(y: offset)
@@ -165,7 +187,9 @@ struct DynamicRefreshView<Content: View>: View {
     var isRefreshing = false
     var scrollOffset = 0.0
     var contentOffset = 0.0
+    var contentHeight = 0.0
     var progress = 0.0
+    var loadMore = false
     let gestureID = UUID().uuidString
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -173,7 +197,6 @@ struct DynamicRefreshView<Content: View>: View {
     }
     
     func addGesture() {
-        print(gestureID + "add")
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(onGestureChange))
         panGesture.delegate = self
         panGesture.name = gestureID
@@ -181,13 +204,7 @@ struct DynamicRefreshView<Content: View>: View {
     }
     
     func removeGesture() {
-        if let grs = rootViewController().view.gestureRecognizers {
-            for gr in grs {
-                print(gr.name)
-            }
-        }
         rootViewController().view.gestureRecognizers?.removeAll()
-        print(gestureID + "remove")
 //        rootViewController().view.gestureRecognizers?.removeAll(where: { gesture in
 //            gesture.name == gestureID
 //        })
@@ -206,10 +223,9 @@ struct DynamicRefreshView<Content: View>: View {
     }
     
     @objc func onGestureChange(gr: UIPanGestureRecognizer) {
-        print(scrollOffset)
         if gr.state == .cancelled || gr.state == .ended {
             if isRefreshing == false {
-                if scrollOffset > 70 {
+                if scrollOffset > 50 {
                     isEligible = true
                 }else {
                     isEligible = false
@@ -235,12 +251,33 @@ extension View {
                 }
             }
     }
+    
+    @ViewBuilder
+    func contentHeight(coordinateSpace: String, offset: @escaping (CGFloat)-> Void) -> some View {
+        self
+            .overlay {
+                GeometryReader { proxy in
+                    let height = proxy.size.height - UIScreen.main.bounds.height
+                    Color.clear
+                        .preference(key: ContentHeightPreferenceKey.self, value: height)
+                        .onPreferenceChange(ContentHeightPreferenceKey.self) { newValue in
+                            offset(newValue)
+                        }
+                }
+            }
+    }
 }
 
 //MARK: Offset PreferenceKey
 struct OffsetKey: PreferenceKey {
     static var defaultValue: CGFloat = 0
-    
+    static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+        value = nextValue()
+    }
+}
+
+struct ContentHeightPreferenceKey: PreferenceKey {
+    static var defaultValue: CGFloat = 0
     static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
         value = nextValue()
     }

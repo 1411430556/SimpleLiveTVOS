@@ -24,7 +24,6 @@ struct PlatformView: View {
             GeometryReader { geometry in
                 
                 let itemWidth = Common.calcPadItemCounts(width: geometry.size.width, horizontalSizeClass: horizontalSizeClass)
-                
                 VStack {
                     ScrollView {
                         LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemWidth.0), spacing: 15), count: itemWidth.1), alignment: .leading, spacing: 15) {
@@ -55,6 +54,7 @@ struct PlatformView: View {
                 }
             }
             .navigationTitle("平台")
+            
         }
     }
 }

@@ -14,6 +14,7 @@ struct ContentView: View {
     var body: some View {
         if #available(iOS 18.0, *) {
             AngelLiveTabView()
+                .toolbarBackground(.red, for: .tabBar)
         } else {
             TabView {
                 

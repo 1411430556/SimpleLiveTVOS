@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LiveParse
+import AngelLiveTools
 
 @available(iOS 18.0, *)
 struct AngelLiveTabView: View {
@@ -19,25 +20,29 @@ struct AngelLiveTabView: View {
         TabView {
             Tab("收藏", systemImage: "play") {
                 FavoriteView()
+                    
             }
             .customizationID(Tabs.favorite.customizationID)
-            TabSection {
-                ForEach(allPlatformList.indices, id: \.self) { index in
-                    Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
-                        LiveListView(searchType: allPlatformList[index].liveType)
-                            .environment(LiveListViewModel(liveType: allPlatformList[index].liveType))
+            
+            if Common.deviceType() == .iPad {
+                TabSection {
+                    ForEach(allPlatformList.indices, id: \.self) { index in
+                        Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
+                            LiveListView(searchType: allPlatformList[index].liveType)
+                                .environment(LiveListViewModel(liveType: allPlatformList[index].liveType))
+                        }
+                        .customizationID(Tabs.platformSection(allPlatformList[index].liveType.rawValue).customizationID)
                     }
-                    .customizationID(Tabs.platformSection(allPlatformList[index].liveType.rawValue).customizationID)
+                } header: {
+                    Label("平台", image: "list.bullet.rectangle")
                 }
-            } header: {
-                Label("平台", image: "list.bullet.rectangle")
+            }else {
+                Tab("平台", systemImage: "play") {
+                    PlatformView()
+                }
+                .customizationID(Tabs.platform.customizationID)
             }
-//                Tab("平台", systemImage: "play") {
-//                    PlatformView()
-//                }
-//                .customizationID(Tabs.platform.customizationID)
-
-
+            
             Tab("设置", systemImage: "books.vertical") {
                 SettingView()
             }
@@ -56,6 +61,7 @@ struct AngelLiveTabView: View {
                 Text("Add")
             }
         }
+        
     }
 }
 

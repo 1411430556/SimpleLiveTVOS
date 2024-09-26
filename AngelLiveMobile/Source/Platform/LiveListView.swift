@@ -7,6 +7,7 @@
 
 import SwiftUI
 import LiveParse
+import AngelLiveTools
 
 struct LiveListView: View {
     
@@ -65,20 +66,21 @@ struct LiveListView: View {
             .navigationTitle(searchType.rawValue)
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        showModal.toggle()
-                    }) {
-                        Text("分类")
+                if Common.deviceType() == .iPad {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button(action: {
+                            showModal.toggle()
+                        }) {
+                            Text("分类")
+                        }
                     }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    
                 }
             }
             .sheet(isPresented: $showModal) {
                 ModalView(showModel: $showModal)
             }
+//            .toolbarVisibility(.hidden, for: .tabBar)
+            .toolbarBackground(.red, for: .tabBar)
         }
         
     }
