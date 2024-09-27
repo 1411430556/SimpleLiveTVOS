@@ -20,6 +20,7 @@ struct LiveListView: View {
     @State var mainViewScrollableState: String?
     @State var progress: CGFloat = .zero
     var appViewModel = AngelLiveViewModel()
+    @Namespace private var namespace
     
     var body: some View {
         
@@ -33,7 +34,7 @@ struct LiveListView: View {
                     ScrollView(.horizontal) {
                         LazyHStack(spacing: 0) {
                             ForEach(liveListViewModel.tabs, id: \.id) { tab in
-                                ListCardView()
+                                ListCardView(namespace: namespace)
                                     .id(tab.title)
                                     .containerRelativeFrame(.horizontal)
                                     .environment(liveListViewModel)

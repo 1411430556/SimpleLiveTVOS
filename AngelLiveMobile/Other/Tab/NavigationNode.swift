@@ -10,11 +10,13 @@ import Foundation
 enum NavigationNode: Equatable, Hashable, Identifiable {
     case platform(Int)
     case list(Int)
+    case detail(Int)
     
     var id: Int {
         switch self {
-        case .platform(let id): id
-        case .list(let id): id
+            case .platform(let id): id
+            case .list(let id): id
+            case .detail(let id): id
         }
     }
 }

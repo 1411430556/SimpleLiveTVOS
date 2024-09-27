@@ -14,6 +14,7 @@ struct ListCardView: View {
     @Environment(LiveListViewModel.self) var liveListViewModel
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(AngelLiveViewModel.self) var appViewModel
+    let namespace: Namespace.ID?
     
     var body: some View {
         GeometryReader { geometry in
@@ -21,42 +22,45 @@ struct ListCardView: View {
             DynamicRefreshView(content: {
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemWidth.0), spacing: 15), count: itemWidth.1), alignment: .leading, spacing: 15) {
                     ForEach(liveListViewModel.roomList, id: \.id) { item in
-                        VStack {
-                            KFImage(.init(string: item.roomCover))
-                                .placeholder {
-                                    Image("placeholder")
-                                        .resizable()
-                                        .cornerRadius(5)
-                                }
-                                .resizable()
-                                .frame(width: itemWidth.0, height: itemWidth.0 * 0.6)
-                                .cornerRadius(5)
-
-                            HStack(alignment: .top) {
-
-                                KFImage(.init(string: item.userHeadImg))
+                        NavigationLink(value: NavigationNode.detail(Int(item.roomId) ?? 0), label: {
+                            VStack {
+                                KFImage(.init(string: item.roomCover))
                                     .placeholder {
-                                        AnyView(Color.gray)
-                                            .cornerRadius(15)
+                                        Image("placeholder")
+                                            .resizable()
+                                            .cornerRadius(5)
                                     }
                                     .resizable()
-                                    .cornerRadius(15)
-                                    .frame(width: 30, height: 30)
+                                    .frame(width: itemWidth.0, height: itemWidth.0 * 0.6)
+                                    .cornerRadius(5)
 
-                                VStack(alignment: .leading) {
-                                    Text(item.roomTitle)
-                                        .fontWeight(.bold)
-                                        .lineLimit(2)
-                                        .lineSpacing(5)
-                                        .truncationMode(.tail)
-                                        .multilineTextAlignment(.leading)
-                                    Text(item.userName)
-                                        .fontWeight(.medium)
+                                HStack(alignment: .top) {
+
+                                    KFImage(.init(string: item.userHeadImg))
+                                        .placeholder {
+                                            AnyView(Color.gray)
+                                                .cornerRadius(15)
+                                        }
+                                        .resizable()
+                                        .cornerRadius(15)
+                                        .frame(width: 30, height: 30)
+
+                                    VStack(alignment: .leading) {
+                                        Text(item.roomTitle)
+                                            .fontWeight(.bold)
+                                            .lineLimit(2)
+                                            .lineSpacing(5)
+                                            .truncationMode(.tail)
+                                            .multilineTextAlignment(.leading)
+                                        Text(item.userName)
+                                            .fontWeight(.medium)
+                                    }
+                                    Spacer()
                                 }
                                 Spacer()
                             }
-                            Spacer()
-                        }
+                        })
+                        .transitionSource(id: item.roomId, namespace: namespace!)
                     }
                 }
                 .padding(.leading, 30)

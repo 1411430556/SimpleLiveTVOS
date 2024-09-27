@@ -55,7 +55,7 @@ struct DynamicRefreshView<Content: View>: View {
                     appViewModel.scrollDelegate.progress = progress
                 }
                 
-                if appViewModel.scrollDelegate.contentHeight < abs(offset) + CGFloat(100) && appViewModel.scrollDelegate.contentHeight > 0 {
+                if appViewModel.scrollDelegate.contentHeight < abs(offset) + CGFloat(100) && appViewModel.scrollDelegate.contentHeight > 0  {
                     appViewModel.scrollDelegate.loadMore = true
                 }
                 

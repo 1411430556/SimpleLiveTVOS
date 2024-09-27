@@ -31,7 +31,9 @@
 		4F982E052C904CFA00CEE47F /* RectKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E022C904CFA00CEE47F /* RectKey.swift */; };
 		4F982E062C904CFA00CEE47F /* TabBarScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E032C904CFA00CEE47F /* TabBarScrollView.swift */; };
 		4F982E092C91915700CEE47F /* ListCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F982E082C91915700CEE47F /* ListCardView.swift */; };
-		4FD1844B2C95784E000DAB29 /* RefreshableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD1844A2C95784E000DAB29 /* RefreshableScrollView.swift */; };
+		4FEF7E6D2CA65AC000ED8FF5 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7E6C2CA65AC000ED8FF5 /* ViewModifiers.swift */; };
+		4FEF7E6F2CA65C6800ED8FF5 /* LiveDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7E6E2CA65C6800ED8FF5 /* LiveDetailView.swift */; };
+		4FEF7E722CA66AAF00ED8FF5 /* ViewDebug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FEF7E712CA66AAF00ED8FF5 /* ViewDebug.swift */; };
 		4FFCF5012C9199D70089FDBA /* AngelLiveTools in Frameworks */ = {isa = PBXBuildFile; productRef = 4FFCF5002C9199D70089FDBA /* AngelLiveTools */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +62,9 @@
 		4F982E022C904CFA00CEE47F /* RectKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectKey.swift; sourceTree = "<group>"; };
 		4F982E032C904CFA00CEE47F /* TabBarScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScrollView.swift; sourceTree = "<group>"; };
 		4F982E082C91915700CEE47F /* ListCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCardView.swift; sourceTree = "<group>"; };
-		4FD1844A2C95784E000DAB29 /* RefreshableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableScrollView.swift; sourceTree = "<group>"; };
+		4FEF7E6C2CA65AC000ED8FF5 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		4FEF7E6E2CA65C6800ED8FF5 /* LiveDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveDetailView.swift; sourceTree = "<group>"; };
+		4FEF7E712CA66AAF00ED8FF5 /* ViewDebug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDebug.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 		4F5FC4E62C87F64C001B3626 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				4FEF7E702CA66AA700ED8FF5 /* DebugView */,
+				4FEF7E6B2CA65AAE00ED8FF5 /* ViewExtension */,
 				4FD184492C957826000DAB29 /* RefreshableScrollView */,
 				4F982DFF2C904CD500CEE47F /* SegmentControl */,
 				4F5FC56F2C87FE78001B3626 /* Tab */,
@@ -120,6 +126,7 @@
 				4F982E082C91915700CEE47F /* ListCardView.swift */,
 				4F44C1EF2C89433E007ED891 /* PlatformViewModel.swift */,
 				4F3D130A2C8EAAEF0020DF93 /* LiveListViewModel.swift */,
+				4FEF7E6E2CA65C6800ED8FF5 /* LiveDetailView.swift */,
 			);
 			path = Platform;
 			sourceTree = "<group>";
@@ -200,9 +207,24 @@
 			isa = PBXGroup;
 			children = (
 				4F5664CB2CA40F6E00402740 /* DynamicRefreshView.swift */,
-				4FD1844A2C95784E000DAB29 /* RefreshableScrollView.swift */,
 			);
 			path = RefreshableScrollView;
+			sourceTree = "<group>";
+		};
+		4FEF7E6B2CA65AAE00ED8FF5 /* ViewExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4FEF7E6C2CA65AC000ED8FF5 /* ViewModifiers.swift */,
+			);
+			path = ViewExtension;
+			sourceTree = "<group>";
+		};
+		4FEF7E702CA66AA700ED8FF5 /* DebugView */ = {
+			isa = PBXGroup;
+			children = (
+				4FEF7E712CA66AAF00ED8FF5 /* ViewDebug.swift */,
+			);
+			path = DebugView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,16 +318,18 @@
 				4F982E052C904CFA00CEE47F /* RectKey.swift in Sources */,
 				4F982E062C904CFA00CEE47F /* TabBarScrollView.swift in Sources */,
 				4F5FC4F32C87F72C001B3626 /* SettingView.swift in Sources */,
+				4FEF7E6F2CA65C6800ED8FF5 /* LiveDetailView.swift in Sources */,
 				4F5664CE2CA415AC00402740 /* AngelLiveViewModel.swift in Sources */,
 				4F5FC4F52C87F7C1001B3626 /* LiveListView.swift in Sources */,
 				4F5FC4EF2C87F708001B3626 /* PlatformView.swift in Sources */,
+				4FEF7E722CA66AAF00ED8FF5 /* ViewDebug.swift in Sources */,
 				4F982E092C91915700CEE47F /* ListCardView.swift in Sources */,
 				4F5FC5712C87FFF9001B3626 /* AngelLiveTabView.swift in Sources */,
+				4FEF7E6D2CA65AC000ED8FF5 /* ViewModifiers.swift in Sources */,
 				4F5664CC2CA40F6E00402740 /* DynamicRefreshView.swift in Sources */,
 				4F5FC4F12C87F71E001B3626 /* SearchView.swift in Sources */,
 				4F3D130B2C8EAAEF0020DF93 /* LiveListViewModel.swift in Sources */,
 				4F6449AA2C86A29200E5E14D /* AngelLiveMobileApp.swift in Sources */,
-				4FD1844B2C95784E000DAB29 /* RefreshableScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
