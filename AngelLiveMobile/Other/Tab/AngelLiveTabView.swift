@@ -15,6 +15,7 @@ struct AngelLiveTabView: View {
     @AppStorage("Angel.Live.TabView.Customization") var tabViewCustomization: TabViewCustomization
     @State private var allPlatformList = LiveParseTools.getAllSupportPlatform()
     @State private var selectedTab: Tabs = .favorite
+    @State private var navigationPath = [NavigationNode]()
     
     var body: some View {
         TabView {
@@ -28,8 +29,10 @@ struct AngelLiveTabView: View {
                 TabSection {
                     ForEach(allPlatformList.indices, id: \.self) { index in
                         Tab(LiveParseTools.getLivePlatformName(allPlatformList[index].liveType), systemImage: "books.vertical") {
-                            LiveListView(searchType: allPlatformList[index].liveType)
-                                .environment(LiveListViewModel(liveType: allPlatformList[index].liveType))
+                            NavigationStack(path: $navigationPath) {
+                                LiveListView(searchType: allPlatformList[index].liveType)
+                                    .environment(LiveListViewModel(liveType: allPlatformList[index].liveType))
+                            }
                         }
                         .customizationID(Tabs.platformSection(allPlatformList[index].liveType.rawValue).customizationID)
                     }

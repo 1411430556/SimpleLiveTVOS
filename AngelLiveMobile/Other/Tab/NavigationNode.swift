@@ -8,11 +8,11 @@
 import Foundation
 
 enum NavigationNode: Equatable, Hashable, Identifiable {
-    case platform(Int)
-    case list(Int)
-    case detail(Int)
+    case platform(String)
+    case list(String)
+    case detail(String)
     
-    var id: Int {
+    var id: String {
         switch self {
             case .platform(let id): id
             case .list(let id): id

@@ -12,7 +12,6 @@ import AngelLiveTools
 struct LiveListView: View {
     
     @Environment(LiveListViewModel.self) var liveListViewModel
-    @State private var navigationPath = [NavigationNode]()
     @State var searchType: LiveType
     @State private var showModal = false
     
@@ -27,63 +26,58 @@ struct LiveListView: View {
         @Bindable var liveListViewModel = self.liveListViewModel
         @Bindable var bindAppViewModel = appViewModel
 
-        NavigationStack(path: $navigationPath) {
-            VStack(spacing: 0) {
-                CustomTabBarView(tabs: $liveListViewModel.tabs, activeIndex: $bindAppViewModel.activeIndex, tabbarScrollableState: $tabBarScrollableState, mainViewScrollableState: $mainViewScrollableState, progress: $progress)
-                GeometryReader { proxy in
-                    ScrollView(.horizontal) {
-                        LazyHStack(spacing: 0) {
-                            ForEach(liveListViewModel.tabs, id: \.id) { tab in
-                                ListCardView(namespace: namespace)
-                                    .id(tab.title)
-                                    .containerRelativeFrame(.horizontal)
-                                    .environment(liveListViewModel)
-                                    .environment(bindAppViewModel)
-                            }
-                        }
-                        .scrollTargetLayout()
-                        .rect { rect in
-                            progress = -rect.minX / proxy.size.width
+        VStack(spacing: 0) {
+            CustomTabBarView(tabs: $liveListViewModel.tabs, activeIndex: $bindAppViewModel.activeIndex, tabbarScrollableState: $tabBarScrollableState, mainViewScrollableState: $mainViewScrollableState, progress: $progress)
+            GeometryReader { proxy in
+                ScrollView(.horizontal) {
+                    LazyHStack(spacing: 0) {
+                        ForEach(liveListViewModel.tabs, id: \.id) { tab in
+                            ListCardView()
+                                .id(tab.title)
+                                .containerRelativeFrame(.horizontal)
+                                .environment(liveListViewModel)
+                                .environment(bindAppViewModel)
                         }
                     }
-                    .scrollPosition(id: $mainViewScrollableState)
-                    .scrollIndicators(.hidden)
-                    .scrollTargetBehavior(.paging)
-                    .onChange(of: mainViewScrollableState) { oldValue, newValue in
-                        if let newValue, let newIndex = liveListViewModel.tabs.firstIndex(where: { $0.title == newValue }) {
-                            withAnimation(.snappy) {
-                                tabBarScrollableState = newValue
-                                bindAppViewModel.activeIndex = newIndex
-                                liveListViewModel.selectedSubListIndex = newIndex
-                                Task {
-                                    try await liveListViewModel.getRoomList(index: newIndex)
-                                }
+                    .scrollTargetLayout()
+                    .rect { rect in
+                        progress = -rect.minX / proxy.size.width
+                    }
+                }
+                .scrollPosition(id: $mainViewScrollableState)
+                .scrollIndicators(.hidden)
+                .scrollTargetBehavior(.paging)
+                .onChange(of: mainViewScrollableState) { oldValue, newValue in
+                    if let newValue, let newIndex = liveListViewModel.tabs.firstIndex(where: { $0.title == newValue }) {
+                        withAnimation(.snappy) {
+                            tabBarScrollableState = newValue
+                            bindAppViewModel.activeIndex = newIndex
+                            liveListViewModel.selectedSubListIndex = newIndex
+                            Task {
+                                try await liveListViewModel.getRoomList(index: newIndex)
                             }
                         }
                     }
                 }
+            }
 //                .ignoresSafeArea() //忽略安全区会使sidebar即使在显示时，view会藏在Sidebar底部
-            }
-            .navigationTitle(searchType.rawValue)
-            .navigationBarTitleDisplayMode(.automatic)
-            .toolbar {
-                if Common.deviceType() == .iPad {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: {
-                            showModal.toggle()
-                        }) {
-                            Text("分类")
-                        }
+        }
+        .navigationTitle(searchType.rawValue)
+        .navigationBarTitleDisplayMode(.automatic)
+        .toolbar {
+            if Common.deviceType() == .iPad {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        showModal.toggle()
+                    }) {
+                        Text("分类")
                     }
                 }
             }
-            .sheet(isPresented: $showModal) {
-                ModalView(showModel: $showModal)
-            }
-//            .toolbarVisibility(.hidden, for: .tabBar)
-            .toolbarBackground(.red, for: .tabBar)
         }
-        
+        .sheet(isPresented: $showModal) {
+            ModalView(showModel: $showModal)
+        }
     }
 }
 

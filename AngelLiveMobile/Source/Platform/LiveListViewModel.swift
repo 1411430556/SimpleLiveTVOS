@@ -113,7 +113,7 @@ class LiveListViewModel {
             
             guard let firstCategoryList = categories.first else { return }
             for item in firstCategoryList.subList {
-                tabs.append(MyView(title: item.title, theView: ListCardView(namespace: nil)))
+                tabs.append(MyView(title: item.title, theView: ListCardView()))
             }
             selectedMainListCategory = firstCategoryList
             selectedSubListIndex = 0

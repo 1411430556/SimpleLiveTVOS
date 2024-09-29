@@ -22,7 +22,6 @@ struct PlatformView: View {
     var body: some View {
         NavigationStack(path: $navigationPath) {
             GeometryReader { geometry in
-                
                 let itemWidth = Common.calcPadItemCounts(width: geometry.size.width, horizontalSizeClass: horizontalSizeClass)
                 VStack {
                     ScrollView {
@@ -31,6 +30,8 @@ struct PlatformView: View {
                                 NavigationLink {
                                     LiveListView(searchType: item.liveType)
                                         .environment(LiveListViewModel(liveType: item.liveType))
+                                        .navigationTransition(.zoom(sourceID: item.id, in: namespace))
+                                        
                                 } label: {
                                     ZStack {
                                         Image("platform-bg")
@@ -40,12 +41,15 @@ struct PlatformView: View {
                                             .resizable()
                                     }
                                     .cornerRadius(10)
+                                    .matchedTransitionSource(id: item.id, in: namespace)
                                 }
+
                                 .transition(.moveAndOpacity)
                                 .animation(.easeInOut(duration: 0.25) ,value: true)
                                 .frame(height: itemWidth.0 * 0.6)
                             }
                         }
+
                         .padding(.leading, 20)
                         .padding(.top, 30)
                     }

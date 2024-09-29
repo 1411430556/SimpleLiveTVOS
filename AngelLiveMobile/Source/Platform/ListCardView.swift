@@ -14,7 +14,8 @@ struct ListCardView: View {
     @Environment(LiveListViewModel.self) var liveListViewModel
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     @Environment(AngelLiveViewModel.self) var appViewModel
-    let namespace: Namespace.ID?
+    @Namespace var namespace
+    @State var isPushed = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -22,7 +23,9 @@ struct ListCardView: View {
             DynamicRefreshView(content: {
                 LazyVGrid(columns: Array(repeating: GridItem(.fixed(itemWidth.0), spacing: 15), count: itemWidth.1), alignment: .leading, spacing: 15) {
                     ForEach(liveListViewModel.roomList, id: \.id) { item in
-                        NavigationLink(value: NavigationNode.detail(Int(item.roomId) ?? 0), label: {
+                        Button {
+                            isPushed.toggle()
+                        } label: {
                             VStack {
                                 KFImage(.init(string: item.roomCover))
                                     .placeholder {
@@ -59,8 +62,14 @@ struct ListCardView: View {
                                 }
                                 Spacer()
                             }
-                        })
-                        .transitionSource(id: item.roomId, namespace: namespace!)
+                            .matchedTransitionSource(id: item.id, in: namespace)
+                            .fullScreenCover(isPresented: $isPushed) {
+                                LiveDetailView()
+                                    .navigationTransition(.zoom(sourceID: item.id, in: namespace))
+                                    
+                            }
+                        }
+
                     }
                 }
                 .padding(.leading, 30)
