@@ -66,6 +66,7 @@ struct ListCardView: View {
                             .fullScreenCover(isPresented: $isPushed) {
                                 LiveDetailView()
                                     .navigationTransition(.zoom(sourceID: item.id, in: namespace))
+                                    .environment(LiveDetailViewModel(currentRoom: item))
                                     
                             }
                         }

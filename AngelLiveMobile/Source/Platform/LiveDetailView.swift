@@ -6,18 +6,61 @@
 //
 
 import SwiftUI
+import Kingfisher
+import KSPlayer
 
 struct LiveDetailView: View {
-    
     @Environment(\.dismiss) var dismiss
-//    let title: String
+    @Environment(LiveDetailViewModel.self) var liveViewModel
     
     var body: some View {
         VStack {
             customNavigationBar
-            Text("Hello, World!")
-            Spacer()
+            HStack {
+                VStack {
+                    if liveViewModel.currentPlayURL != nil {
+                        KSVideoPlayer(coordinator: liveViewModel.playerCoordinator, url:liveViewModel.currentPlayURL ?? URL(string: "")!, options: liveViewModel.playerOption)
+                            .background(Color.black)
+                            .onAppear {
+                                liveViewModel.playerCoordinator.playerLayer?.play()
+                                liveViewModel.setPlayerDelegate()
+                            }
+                            .safeAreaPadding(.all)
+                            .zIndex(1)
+                    }else {
+                        Color.black
+                    }
+                    HStack(alignment: .top) {
+                        KFImage(.init(string: liveViewModel.currentRoom.userHeadImg))
+                            .placeholder {
+                                AnyView(Color.gray)
+                                    .cornerRadius(15)
+                            }
+                            .resizable()
+                            .cornerRadius(15)
+                            .frame(width: 30, height: 30)
+
+                        VStack(alignment: .leading) {
+                            Text(liveViewModel.currentRoom.roomTitle)
+                                .fontWeight(.bold)
+                                .lineLimit(2)
+                                .lineSpacing(5)
+                                .truncationMode(.tail)
+                                .multilineTextAlignment(.leading)
+                            Text(liveViewModel.currentRoom.userName)
+                                .fontWeight(.medium)
+                        }
+                        Spacer()
+                    }
+                    Spacer()
+                }
+            }
         }
+        .background(.black)
+        .onAppear {
+            liveViewModel.getPlayArgs()
+        }
+        
     }
     
     private var customNavigationBar: some View {
@@ -36,12 +79,8 @@ struct LiveDetailView: View {
                 
                 Spacer()
                 
-                Text("a")
-                    .font(.headline)
-                
                 Spacer()
                 
-                // 为了平衡左侧按钮，可以添加一个占位视图
                 Color.clear
                     .frame(width: 44, height: 44)
             }
