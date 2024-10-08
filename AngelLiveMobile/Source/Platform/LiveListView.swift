@@ -76,57 +76,13 @@ struct LiveListView: View {
             }
         }
         .sheet(isPresented: $showModal) {
-            ModalView(showModel: $showModal)
+            LiveMenuView(showModel: $showModal)
+                .environment(liveListViewModel)
         }
     }
 }
 
-struct SearchBar: View {
-    @Binding var text: String
-    
-    var body: some View {
-        HStack {
-            TextField("Search", text: $text)
-                .padding(7)
-                .padding(.horizontal, 25)
-                .background(Color(.systemGray6))
-                .cornerRadius(8)
-                .overlay(
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
-                            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                            .padding(.leading, 8)
-                    }
-                )
-        }
-        .padding(.horizontal, 10)
-    }
-}
 
-struct ModalView: View {
-    
-    @Binding var showModel: Bool
-    @State private var searchText = ""
-    
-    var body: some View {
-        VStack {
-            Text("This is a modal view")
-                .font(.title)
-            SearchBar(text: $searchText)
-            Spacer()
-            Button(action: {
-                showModel.toggle()
-            }) {
-                Text("Dismiss")
-            }
-        }
-        .padding()
-//        .background(Color.white)
-//        .cornerRadius(16)
-//        .shadow(radius: 10)
-    }
-}
 
 #Preview {
     LiveListView(searchType: .bilibili)

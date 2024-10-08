@@ -53,13 +53,9 @@ class LiveListViewModel {
      - 展示左侧列表子列表
     */
     @MainActor func showSubCategoryList(currentCategory: LiveMainListModel) {
-        if self.selectedSubCategory.count == 0 {
-            self.selectedMainListCategory = currentCategory
-            self.selectedSubCategory.removeAll()
-            self.getSubCategoryList()
-        }else {
-            self.selectedSubCategory.removeAll()
-        }
+        self.selectedMainListCategory = currentCategory
+        self.selectedSubCategory.removeAll()
+        self.getSubCategoryList()
     }
     
     //MARK: 获取相关
@@ -131,6 +127,13 @@ class LiveListViewModel {
     func getSubCategoryList() {
         let subList = self.selectedMainListCategory?.subList ?? []
         self.selectedSubCategory = subList
+        tabs.removeAll()
+        for item in self.selectedSubCategory {
+            tabs.append(MyView(title: item.title, theView: ListCardView()))
+        }
+        Task {
+            try await getRoomList(index: 0)
+        }
     }
     
     /**
